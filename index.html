@@ -3,7 +3,7 @@
 
 <body style="display: flex; flex-direction: column;width: 50vw;">
 
-    <h1>C2318 LVSB Control Philosophy</h1>
+    <h1>C2318 LVSB Control Philosophy (Try Me!)</h1>
 
     <canvas id="myCanvas" width="820" height="400" style="border:1px solid #d3d3d3;">
         Your browser does not support the HTML canvas tag.</canvas>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="buttons">
-                <a href="#" id="Trip_C"">C: Trip C</a>
+                <a href="#" id="Trip_C">C: Trip C</a>
             </div>
         </div>
 
@@ -55,7 +55,6 @@
                     </div>
 
                     <div class="buttons">
-                        <a href="#" id="C_Fault">C Fault</a>
                         <a href="#" id="D_Fault">D Fault</a>
                     </div>
             </div>
@@ -93,6 +92,10 @@
                 <div class="buttons">
                     <a href="#" id="B1_Fault">B1 Fault</a>
                     <a href="#" id="B2_Fault">B2 Fault</a>
+                </div>
+
+                <div class="buttons">
+                    <a href="#" id="C_Fault">C Fault</a>
                 </div>
             </div>
 
@@ -231,12 +234,7 @@
     }
 
     document.getElementById("C_Fault").onclick = function () {
-        if (isFault_C == 0) {
-            isFault_C = 1
-        }
-        else if (isFault_C == 1) {
-            isFault_C = 0
-        }
+        isFault_C = 0
         draw_circuit()
     }
 
