@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+<!-- Authur: Sam Ng -->
 
 <body style="display: flex; flex-direction: column;width: 50vw;">
 
-    <h1>C2318 LVSB Control Philosophy (Try Me!)</h1>
+    <h1>C2318 LVSB Control Philosophy</h1>
 
     <canvas id="myCanvas" width="820" height="400" style="border:1px solid #d3d3d3;">
         Your browser does not support the HTML canvas tag.</canvas>
@@ -38,7 +39,7 @@
             </div>
 
             <div class="buttons">
-                <a href="#" id="Trip_C">C: Trip C</a>
+                <a href="#" id="Trip_C"">C: Trip C</a>
             </div>
         </div>
 
@@ -50,56 +51,64 @@
                     </div>
 
                     <div class="buttons">
-                        <a href="#" id="A3_Fault">A3 Fault</a>
-                        <a href="#" id="B3_Fault">B3 Fault</a>
+                        <a href="#" id="A3_OC">A3-OCEF</a>
+                        <a href="#" id="B3_OC">B3-OCEF</a>
                     </div>
 
                     <div class="buttons">
-                        <a href="#" id="D_Fault">D Fault</a>
+                        <a href="#" id="D_OC">D-OCEF</a>
                     </div>
             </div>
 
             <div style="display: inline-block;padding: 1vw;">
                 <h4>Fault Panel #2</h4>
                 <div class="buttons">
-                    <a href="#" id="A_side_HV_Fault" style="width: 120px;">HV Fault <br>(A side)</a>
-                    <a href="#" id="B_side_HV_Fault" style="width: 120px;">HV Fault <br>(B side)</a>
+                    <a href="#" id="A_side_HV_Fault" style="width: 140px;">HV Fault / A2-OCEF <br>(A side)</a>
+                    <a href="#" id="B_side_HV_Fault" style="width: 140px;">HV Fault / B2-OCEF <br>(B side)</a>
                 </div>
 
                 <div class="buttons">
-                    <a href="#" id="A_side_HV_EPB" style="width: 120px;">HV EPB Fault <br>(A side)</a>
-                    <a href="#" id="B_side_HV_EPB" style="width: 120px;">HV EPB Fault <br>(B side)</a>
+                    <a href="#" id="A_side_HV_EPB" style="width: 140px;">HV EPB Fault <br>(A side)</a>
+                    <a href="#" id="B_side_HV_EPB" style="width: 140px;">HV EPB Fault <br>(B side)</a>
                 </div>
 
                 <div class="buttons">
-                    <a href="#" id="A_side_LV_EPB" style="width: 120px;">LV EPB Fault <br>(A side)</a>
-                    <a href="#" id="B_side_LV_EPB" style="width: 120px;">LV EPB Fault <br>(B side)</a>
+                    <a href="#" id="A_side_LV_EPB" style="width: 140px;">LV EPB <br>(A side)</a>
+                    <a href="#" id="B_side_LV_EPB" style="width: 140px;">LV EPB <br>(B side)</a>
                 </div>
 
                 <div class="buttons">
-                    <a href="#" id="A_side_Tx_Fault" style="width: 120px;">Tx Thermal Fault <br>(A side)</a>
-                    <a href="#" id="B_side_Tx_Fault" style="width: 120px;">Tx Thermal Fault <br>(B side)</a>
+                    <a href="#" id="A_side_Tx_Fault" style="width: 140px;">Tx Thermal Fault <br>(A side)</a>
+                    <a href="#" id="B_side_Tx_Fault" style="width: 140px;">Tx Thermal Fault <br>(B side)</a>
                 </div>
             </div>
 
             <div style="display: inline-block;padding: 1vw;">
                 <h4>Lockout Status</h4>
                 <div class="buttons">
-                    <a href="#" id="A1_Fault">A1 Fault</a>
-                    <a href="#" id="A2_Fault">A2 Fault</a>
+                    <a href="#" id="A1_Fault">A1 Lockout</a>
+                    <a href="#" id="A2_Fault">A2 Lockout</a>
                 </div>
 
                 <div class="buttons">
-                    <a href="#" id="B1_Fault">B1 Fault</a>
-                    <a href="#" id="B2_Fault">B2 Fault</a>
+                    <a href="#" id="B1_Fault">B1 Lockout</a>
+                    <a href="#" id="B2_Fault">B2 Lockout</a>
                 </div>
 
                 <div class="buttons">
-                    <a href="#" id="C_Fault">C Fault</a>
+                    <a href="#" id="A3_Fault">A3 Lockout</a>
+                    <a href="#" id="B3_Fault">B3 Lockout</a>
+                </div>
+
+                <div class="buttons">
+                    <a href="#" id="C_Fault">C Lockout</a>
+                    <a href="#" id="D_Fault">D Lockout</a>
                 </div>
             </div>
-
-
+            
+            <div class="buttons">
+              <p>Sam</p>
+            </div>
 
 </body>
 
@@ -107,6 +116,22 @@
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     var index = 1;
+
+    document.getElementById("A3_OC").onclick = function () {
+        isFault_A3 = 1
+        draw_circuit()
+    }
+
+    document.getElementById("B3_OC").onclick = function () {
+        isFault_B3 = 1
+        draw_circuit()
+    }
+
+    document.getElementById("D_OC").onclick = function () {
+        isFault_D = 1
+        isFault_C = 1
+        draw_circuit()
+    }
 
     document.getElementById("A_side_HV_Fault").onclick = function () {
         isFault_A1 = 1
@@ -204,12 +229,8 @@
     }
 
     document.getElementById("A3_Fault").onclick = function () {
-        if (isFault_A3 == 0) {
-            isFault_A3 = 1
-        }
-        else if (isFault_A3 == 1) {
-            isFault_A3 = 0
-        }
+
+        isFault_A3 = 0
         draw_circuit()
     }
 
@@ -224,12 +245,7 @@
     }
 
     document.getElementById("B3_Fault").onclick = function () {
-        if (isFault_B3 == 0) {
-            isFault_B3 = 1
-        }
-        else if (isFault_B3 == 1) {
-            isFault_B3 = 0
-        }
+        isFault_B3 = 0
         draw_circuit()
     }
 
@@ -239,13 +255,7 @@
     }
 
     document.getElementById("D_Fault").onclick = function () {
-        if (isFault_D == 0) {
-            isFault_D = 1
-            isFault_C = 1
-        }
-        else if (isFault_D == 1) {
-            isFault_D = 0
-        }
+        isFault_D = 0
         draw_circuit()
     }
 
@@ -1248,4 +1258,5 @@
     }
 </style>
 
+<!-- Authur: Sam Ng -->
 </html>
