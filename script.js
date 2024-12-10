@@ -37,14 +37,10 @@ document.getElementById("B_side_HV_Fault").onclick = function () {
 document.getElementById("A_side_Tx_Fault").onclick = function () {
     isOpen_A1 = 1
     draw_circuit()
-    isOpen_A1 = 0
-    draw_circuit()
 }
 
 document.getElementById("B_side_Tx_Fault").onclick = function () {
     isOpen_B1 = 1
-    draw_circuit()
-    isOpen_B1 = 0
     draw_circuit()
 }
 
