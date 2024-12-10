@@ -35,16 +35,16 @@ document.getElementById("B_side_HV_Fault").onclick = function () {
 }
 
 document.getElementById("A_side_Tx_Fault").onclick = function () {
-    isLost_A = 1
+    isOpen_A1 = 1
     draw_circuit()
-    isLost_A = 0
+    isOpen_A1 = 0
     draw_circuit()
 }
 
 document.getElementById("B_side_Tx_Fault").onclick = function () {
-    isLost_B = 1
+    isOpen_B1 = 1
     draw_circuit()
-    isLost_B = 0
+    isOpen_B1 = 0
     draw_circuit()
 }
 
@@ -92,16 +92,12 @@ document.getElementById("Trip_C").onclick = function () {
 }
 
 document.getElementById("A1_ON").onclick = function () {
-    if (isLost_A == 0) {
-        isOpen_A1 = 0
-    }
+    isOpen_A1 = 0
     draw_circuit()
 }
 
 document.getElementById("B1_ON").onclick = function () {
-    if (isLost_B == 0) {
-        isOpen_B1 = 0
-    }
+    isOpen_B1 = 0
     draw_circuit()
 }
 
