@@ -14,11 +14,6 @@ document.getElementById("B3_OC").onclick = function () {
     draw_circuit()
 }
 
-document.getElementById("C_OC").onclick = function () {
-    isFault_C = 1
-    draw_circuit()
-}
-
 document.getElementById("D_OC").onclick = function () {
     isFault_D = 1
     isFault_C = 1
