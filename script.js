@@ -141,12 +141,10 @@ document.getElementById("D_Fault").onclick = function () {
 document.getElementById("A_Loss").onclick = function () {
     if (isLost_A == 0) {
         isLost_A = 1
-        document.getElementById("A_Loss").innerText = "A Side: OFF"
         document.getElementById("A_Loss").style.backgroundColor = "grey"
     }
     else if (isLost_A == 1) {
         isLost_A = 0
-        document.getElementById("A_Loss").innerText = "A Side: ON"
         document.getElementById("A_Loss").style.backgroundColor = "white"
     }
     draw_circuit()
@@ -156,12 +154,10 @@ document.getElementById("B_Loss").onclick = function () {
 
     if (isLost_B == 0) {
         isLost_B = 1
-        document.getElementById("B_Loss").innerText = "B Side: OFF"
         document.getElementById("B_Loss").style.backgroundColor = "grey"
     }
     else if (isLost_B == 1) {
         isLost_B = 0
-        document.getElementById("B_Loss").innerText = "B Side: ON"
         document.getElementById("B_Loss").style.backgroundColor = "white"
     }
     draw_circuit()
@@ -914,19 +910,29 @@ buffer_isOpen_B2 = 0
 buffer_isA2B2Closed = 0
 function CB_logic() {
     //Side A
+    function open_A2() {
+        isOpen_A2 = 1
+        draw_circuit()
+    }
+
     if (isLost_A == 0) {
         color_cable_to_A1 = 1
     } else {
         color_cable_to_A1 = 0
-        isOpen_A2 = 1
+        setTimeout(open_A2, 1000)
     }
 
     //Side B
+    function open_B2() {
+        isOpen_B2 = 1
+        draw_circuit()
+    }
+
     if (isLost_B == 0) {
         color_cable_to_B1 = 2
     } else {
         color_cable_to_B1 = 0
-        isOpen_B2 = 1
+        setTimeout(open_B2, 1000)
     }
 
     if (isFault_A1 == 1) isOpen_A1 = 1
@@ -963,7 +969,7 @@ function CB_logic() {
         }
     }
 
-    //Close A3/B3
+    //Open A3/B3
     if ((buffer_isA2B2Closed == 0 && (isOpen_A2 == 1 || isOpen_B2 == 1)) && isFault_C == 0 && isFault_D == 0) {
         isOpen_A3 = 1
         isOpen_B3 = 1
@@ -975,7 +981,7 @@ function CB_logic() {
         isOpen_C = 0
     }
 
-    //Condition to close A1
+    //Close A1 color change
     if (isOpen_A1 == 0 && isLost_A == 0) {
         color_A1 = color_cable_to_A1
         color_Tx_S01 = color_A1
