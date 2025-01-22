@@ -56,20 +56,6 @@ document.getElementById("B_side_Tx_Fault").onclick = function () {
     draw_circuit()
 }
 
-document.getElementById("A_side_HV_Fault").onclick = function () {
-    isFault_A1 = 1
-    isFault_A2 = 1
-    isFault_C = 1
-    draw_circuit()
-}
-
-document.getElementById("B_side_HV_Fault").onclick = function () {
-    isFault_B1 = 1
-    isFault_B2 = 1
-    isFault_C = 1
-    draw_circuit()
-}
-
 document.getElementById("A_side_HV_EPB").onclick = function () {
     isFault_A1 = 1
     draw_circuit()
