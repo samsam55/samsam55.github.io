@@ -17,7 +17,6 @@ document.getElementById("B3_OC").onclick = function () {
 document.getElementById("D_OC").onclick = function () {
     isFault_D = 1
     isFault_C = 1
-    isOpen_C = 1
     draw_circuit()
 }
 
@@ -25,7 +24,6 @@ document.getElementById("A_side_LV_Fault").onclick = function () {
     isFault_A1 = 1
     isFault_A2 = 1
     isFault_C = 1
-    isOpen_C = 1
     draw_circuit()
 }
 
@@ -33,21 +31,18 @@ document.getElementById("B_side_LV_Fault").onclick = function () {
     isFault_B1 = 1
     isFault_B2 = 1
     isFault_C = 1
-    isOpen_C = 1
     draw_circuit()
 }
 
 document.getElementById("A_side_REF_SBEF").onclick = function () {
     isFault_A1 = 1
     isFault_A2 = 1
-    isFault_C = 1
     draw_circuit()
 }
 
 document.getElementById("B_side_REF_SBEF").onclick = function () {
     isFault_B1 = 1
     isFault_B2 = 1
-    isFault_C = 1
     draw_circuit()
 }
 
@@ -64,12 +59,14 @@ document.getElementById("B_side_Tx_Fault").onclick = function () {
 document.getElementById("A_side_HV_Fault").onclick = function () {
     isFault_A1 = 1
     isFault_A2 = 1
+    isFault_C = 1
     draw_circuit()
 }
 
 document.getElementById("B_side_HV_Fault").onclick = function () {
     isFault_B1 = 1
     isFault_B2 = 1
+    isFault_C = 1
     draw_circuit()
 }
 
@@ -86,7 +83,6 @@ document.getElementById("B_side_HV_EPB").onclick = function () {
 document.getElementById("A_side_LV_EPB").onclick = function () {
     isFault_A1 = 1
     isFault_C = 1
-    isOpen_C = 1
     draw_circuit()
 }
 
@@ -971,6 +967,7 @@ function CB_logic() {
     if (isFault_B1 == 1) isOpen_B1 = 1
     if (isFault_B2 == 1) isOpen_B2 = 1
     if (isFault_B3 == 1) isOpen_B3 = 1
+    if (isFault_C == 1) isOpen_C = 1
     if (isFault_D == 1) isOpen_D = 1
 
     //Intertripping
