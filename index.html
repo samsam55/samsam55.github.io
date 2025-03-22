@@ -9,7 +9,7 @@
 <body style="width: 80vw;">
 
     <div style="display: flex; flex-direction: column;width: 65vw;padding-left: 1vw;">
-        <h1>C2318 LVSB Control Philosophy</h1>
+        <h1>The N+1 LVSB</h1>
 
         <canvas id="myCanvas" width="850" height="400" style="border:1px solid #d3d3d3;width: 45vw;">
             Your browser does not support the HTML canvas tag.</canvas>
@@ -73,18 +73,23 @@
                 <div style="display: inline-block;padding: 1vw;">
                     <h4>Fault Panel #2</h4>
                     <div class="buttons">
-                        <a href="#" id="A_side_HV_Fault" style="width: 140px;">LV Fault / REF / SBEF <br>(A side)</a>
-                        <a href="#" id="B_side_HV_Fault" style="width: 140px;">LV Fault / REF / SBEF <br>(B side)</a>
+                        <a href="#" id="A_side_LV_Fault" style="width: 140px;">LV/HV OCEF / SBEF <br>(A side)</a>
+                        <a href="#" id="B_side_LV_Fault" style="width: 140px;">LV/HV OCEF / SBEF <br>(B side)</a>
                     </div>
 
                     <div class="buttons">
-                        <a href="#" id="A_side_HV_EPB" style="width: 140px;">HV EPB Fault <br>(A side)</a>
-                        <a href="#" id="B_side_HV_EPB" style="width: 140px;">HV EPB Fault <br>(B side)</a>
+                        <a href="#" id="A_side_REF_SBEF" style="width: 140px;">REF <br>(A side)</a>
+                        <a href="#" id="B_side_REF_SBEF" style="width: 140px;">REF <br>(B side)</a>
                     </div>
 
                     <div class="buttons">
                         <a href="#" id="A_side_LV_EPB" style="width: 140px;">LV EPB <br>(A side)</a>
                         <a href="#" id="B_side_LV_EPB" style="width: 140px;">LV EPB <br>(B side)</a>
+                    </div>
+
+                    <div class="buttons">
+                        <a href="#" id="A_side_HV_EPB" style="width: 140px;">HV EPB <br>(A side)</a>
+                        <a href="#" id="B_side_HV_EPB" style="width: 140px;">HV EPB <br>(B side)</a>
                     </div>
 
                     <div class="buttons">
@@ -94,15 +99,15 @@
                 </div>
 
                 <div style="display: inline-block;padding: 1vw;">
-                    <h4>Lockout Status</h4>
+                    <h4>Lockout/Fault Status</h4>
                     <div class="buttons">
                         <a href="#" id="A1_Fault">A1 Lockout</a>
-                        <a href="#" id="A2_Fault">A2 Lockout</a>
+                        <a href="#" id="A2_Fault">A2 Fault</a>
                     </div>
 
                     <div class="buttons">
                         <a href="#" id="B1_Fault">B1 Lockout</a>
-                        <a href="#" id="B2_Fault">B2 Lockout</a>
+                        <a href="#" id="B2_Fault">B2 Fault</a>
                     </div>
 
                     <div class="buttons">
@@ -120,6 +125,7 @@
 
             <div >
                 <p>   Samsam</p>
+                <a href="https://mtrchk-my.sharepoint.com/:x:/g/personal/sammsng_mtr_com_hk/EdyxO9y2BpZIjcV8YNO0mckBoe-zdvlVe5RxIQ0fNv-n6g?email=nickpkshek%40mtr.com.hk&e=jDmoCp">Phasing-out Calculator</a>
             </div>
 </body>
 <!-- Authur: Sam Ng -->
