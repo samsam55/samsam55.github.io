@@ -67,23 +67,21 @@ document.getElementById("B_side_LV_EPB").onclick = function () {
 }
 
 document.getElementById("A3_ON").onclick = function () {
-    if (isOpen_C == 1 || isFault_C == 1) {
+    if (isOpen_C == 1 || isBypass_A3 == 1) {
         isOpen_A3 = 0
     }
     draw_circuit()
 }
 
 document.getElementById("B3_ON").onclick = function () {
-    if (isOpen_C == 1 || isFault_C == 1) {
+    if (isOpen_C == 1 || isBypass_B3 == 1) {
         isOpen_B3 = 0
     }
     draw_circuit()
 }
 
 document.getElementById("Trip_C").onclick = function () {
-    if (isOpen_A3 == 1 && isOpen_B3 == 1) {
-        isOpen_C = 1
-    }
+    isOpen_C = 1
     draw_circuit()
 }
 
@@ -159,6 +157,32 @@ document.getElementById("B_Loss").onclick = function () {
     else if (isLost_B == 1) {
         isLost_B = 0
         document.getElementById("B_Loss").style.backgroundColor = "white"
+    }
+    draw_circuit()
+}
+
+document.getElementById("A3_Bypass").onclick = function () {
+
+    if (isBypass_A3 == 0) {
+        isBypass_A3 = 1
+        document.getElementById("A3_Bypass").style.backgroundColor = "Cyan"
+    }
+    else if (isBypass_A3 == 1) {
+        isBypass_A3 = 0
+        document.getElementById("A3_Bypass").style.backgroundColor = "white"
+    }
+    draw_circuit()
+}
+
+document.getElementById("B3_Bypass").onclick = function () {
+
+    if (isBypass_B3 == 0) {
+        isBypass_B3 = 1
+        document.getElementById("B3_Bypass").style.backgroundColor = "Cyan"
+    }
+    else if (isBypass_B3 == 1) {
+        isBypass_B3 = 0
+        document.getElementById("B3_Bypass").style.backgroundColor = "white"
     }
     draw_circuit()
 }
@@ -482,7 +506,13 @@ function draw_A3(color = 0, isOpen = 0) {
         ctx.fillText("A3 (Fault)", 128, 340);
         ctx.fillStyle = "black";
         ctx.stroke();
-    } else {
+    } else if(isBypass_A3 == 1){
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "cyan";
+        ctx.fillText("A3 (Bypass)", 128, 340);
+        ctx.fillStyle = "black";
+        ctx.stroke();
+    }else {
         ctx.font = "20px Arial";
         ctx.fillText("A3", 128, 340);
         ctx.stroke();
@@ -699,6 +729,12 @@ function draw_B3(color = 0, isOpen = 0) {
         ctx.fillText("B3 (Fault)", 730, 340);
         ctx.fillStyle = "black"
         ctx.stroke();
+    } else if(isBypass_B3 == 1){
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "cyan"
+        ctx.fillText("B3 (Bypass)", 730, 340);
+        ctx.fillStyle = "black"
+        ctx.stroke();
     } else {
         //B3 (tag)
         ctx.font = "20px Arial";
@@ -862,6 +898,10 @@ isFault_B3 = 0
 isFault_C = 0
 isFault_D = 0
 
+//Non-ESS CB Bypass
+isBypass_A3 = 0
+isBypass_B3 = 0
+
 //Network Color
 color_cable_to_A1 = 0
 color_A1 = 0
@@ -977,7 +1017,7 @@ function CB_logic() {
     buffer_isA2B2Closed = Math.max(isOpen_A2, isOpen_B2)
 
     //Close C
-    if ((isOpen_A2 == 1 || isOpen_B2 == 1) && isFault_C == 0 && isOpen_A3 == 1 && isOpen_B3 == 1) {
+    if ((isOpen_A2 == 1 || isOpen_B2 == 1) && isFault_C == 0 && (isOpen_A3 == 1 || isBypass_A3 == 1) && (isOpen_B3 == 1 || isBypass_B3 == 1)) {
         isOpen_C = 0
     }
 
@@ -1003,7 +1043,8 @@ function CB_logic() {
     if (isOpen_A3 == 0 && isOpen_A2 == 0 && isOpen_A1 == 0 && isLost_A == 0) {
         color_A3 = color_busbar_A
         color_busbar_A_NE = color_busbar_A
-    } else {
+    }  
+    else {
         color_A3 = 0
         color_busbar_A_NE = 0
     }
@@ -1030,7 +1071,8 @@ function CB_logic() {
     if (isOpen_B3 == 0 && isOpen_B2 == 0 && isOpen_B1 == 0 && isLost_B == 0) {
         color_B3 = color_busbar_B
         color_busbar_B_NE = color_busbar_B
-    } else {
+    }  
+    else {
         color_B3 = 0
         color_busbar_B_NE = 0
     }
@@ -1040,6 +1082,14 @@ function CB_logic() {
         color_C = Math.max(color_A2, color_B2)
         color_busbar_A = color_C
         color_busbar_B = color_C
+        if(isOpen_A3 == 0){
+            color_A3 = color_C
+            color_busbar_A_NE = color_C
+        }
+        if(isOpen_B3 == 0){
+            color_B3 = color_C
+            color_busbar_B_NE = color_C
+        }
     } else {
         color_C = 0
         color_busbar_A = color_A2
@@ -1047,6 +1097,7 @@ function CB_logic() {
         if (isOpen_D == 0) color_D = color_busbar_A
     }
 
+    //color of D
     if (isOpen_D == 0) {
         color_D = Math.max(color_busbar_A, color_C)
     } else {
