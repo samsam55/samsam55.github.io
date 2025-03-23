@@ -1125,7 +1125,7 @@ function CB_logic() {
 
 function draw_circuit() {
 
-    ctx.clearRect(0, 0, 820, 400)
+    ctx.clearRect(0, 0, 850, 400)
 
     CB_logic()
     update_button_status()
