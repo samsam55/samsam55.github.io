@@ -36,13 +36,11 @@ document.getElementById("B_side_LV_Fault").onclick = function () {
 
 document.getElementById("A_side_REF_SBEF").onclick = function () {
     isFault_A1 = 1
-    isFault_A2 = 1
     draw_circuit()
 }
 
 document.getElementById("B_side_REF_SBEF").onclick = function () {
     isFault_B1 = 1
-    isFault_B2 = 1
     draw_circuit()
 }
 
