@@ -20,6 +20,18 @@ document.getElementById("D_OC").onclick = function () {
     draw_circuit()
 }
 
+document.getElementById("A_side_HV_OCEF").onclick = function () {
+    isFault_A1 = 1
+    isFault_C = 1
+    draw_circuit()
+}
+
+document.getElementById("B_side_HV_OCEF").onclick = function () {
+    isFault_B1 = 1
+    isFault_C = 1
+    draw_circuit()
+}
+
 document.getElementById("A_side_LV_Fault").onclick = function () {
     isFault_A1 = 1
     isFault_A2 = 1
@@ -56,14 +68,12 @@ document.getElementById("B_side_Tx_Fault").onclick = function () {
 
 document.getElementById("A_side_LV_EPB").onclick = function () {
     isFault_A1 = 1
-    isFault_A2 = 1
     isFault_C = 1
     draw_circuit()
 }
 
 document.getElementById("B_side_LV_EPB").onclick = function () {
     isFault_B1 = 1
-    isFault_B2 = 1
     isFault_D = 1
     draw_circuit()
 }
