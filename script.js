@@ -1025,10 +1025,10 @@ function CB_logic() {
 
     //Close A2/B2
     if (isOpen_C == 1) {
-        if (isOpen_A1 == 0 && isLost_A == 0) {
+        if (isOpen_A1 == 0 && isLost_A == 0 && isFault_A2 == 0) {
             isOpen_A2 = 0
         }
-        if (isOpen_B1 == 0 && isLost_B == 0) {
+        if (isOpen_B1 == 0 && isLost_B == 0 && isFault_B2 == 0) {
             isOpen_B2 = 0
         }
     }
